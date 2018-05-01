@@ -1,0 +1,65 @@
+<form #of="ngForm">
+    <div class="sidenav">
+        <div id="list" class="form-group">
+            <ul class="a" *ngFor="let pin of places ">
+                <li (click)="pinInfo(pin)">{{ pin.name }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="main">
+            <div *ngIf="button" class="fomr-group">
+                    <button (click)="show()" class="btn btn-primary">Prideti nuolaida</button>
+                    </div>
+        <div *ngIf="forms || edit"  id="main_info" class="form-group row">
+            <div class="col-sm-6">
+                <div class="form-group row">
+                     <div class="col-sm-4">
+                    <label for="name">Pavadinimas*</label>
+                </div>
+                <div class="col-sm-6">
+                    <input required type="text" ngModel name="names" [(ngModel)]="disc.names" class="form-control" id="names" name="names" #names="ngModel">
+                    <div *ngIf="names.touched && !names.valid" class="alert alert-danger">Iveskite Pavadinima </div>
+                </div>  
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="size">Akcijos Dydis*</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input required type="text" ngModel name="size" placeholder="Pvz... -5% ... -3e" [(ngModel)]="disc.shortcut" class="form-control"
+                            id="size" name="size" #size="ngModel">
+                        <div *ngIf="size.touched && !size.valid" class="alert alert-danger">Iveskite Nuolaidos dydi</div>
+                    </div>
+                </div>
+             
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="size">Galiojimo laikas*</label>
+                    </div>
+                    <div class="col-sm-6">
+                        <input ngModel name="date" [(ngModel)]="disc.date" id="date" type="date" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                    <div class="form-group">
+                            <label for="description">Galiojimo Salyga</label>
+                            <textarea class="form-control" ngModel name="description" [(ngModel)]="disc.description" id="description" cols="15" rows="5"></textarea>
+                        </div>
+                        <div class="form-group">
+                        <label for=""></label>
+                        <input ngModel  name="image" #name="ngModel" type="file" (change)="fileChangeEvent($event)" />
+                        <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="2 / 3" [aspectRatio]="2 / 3" format="png" (imageCropped)="imageCropped($event)"
+                            (imageLoaded)="imageLoaded() " (loadImageFailed)="loadImageFailed()"></image-cropper>
+                    </div>
+    
+              
+                </div>
+                <button *ngIf="forms" [disabled]="!of.valid" (click)="save(of.value)" class="btn btn-primary">Issaugoti</button>
+                <button *ngIf="edit" (click)="update(of.value)" class="btn btn-primary">Pakeisti</button>
+                <ul *ngFor="let disc of total  ">
+                    <li (click)="getDiscount(disc)">{{ disc.name }}</li>
+                </ul>
+      </div>
+    </div>
+</form>

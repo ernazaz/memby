@@ -1,0 +1,92 @@
+<form #f="ngForm">
+  <div class="form-group row">
+    <div class="col-sm-2">
+      <div class="form-group">
+        <button (click)="addLevel()" class="btn btn-primary">Prideti Lygi</button>
+      </div>
+      <div class="form-group">
+        <ul *ngFor="let level of loyaltyLevels$ | async ">
+          <li (click)="levelInfo(level)">{{ level.level }} Lygis</li>
+        </ul>
+      </div>
+    </div>
+    <div *ngIf="openForm || editForm " class="col-sm-6">
+      <div class="form-group">
+        <div class="form-group">
+          <label>Lygis {{ levelInformation.level || level }}</label>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label for="visits">Tasku skaicius</label>
+          </div>
+          <div class="col-sm-6 row ">
+            <div class="form-group col-sm-6">
+                <input required ngModel [(ngModel)]="levelInformation.visits || loyaltLevel" name="visits" type="number" min="1" class="form-control" #visits="ngModel"
+                maxlength="4" id="visits">
+              <div *ngIf="visits.touched && !visits.valid" class="alert alert-danger">Iveskite Apsilankymu skaiciu</div>
+            </div>
+            <div class="form-group col-sm-6">
+                <button (click)="updateVisits(f.value)" *ngIf="editForm" class="btn primary">Pakeisti skaiciu</button>
+            </div>
+          </div>
+        </div>
+        <button *ngIf="openForm" [disabled]="!f.valid"  (click)="saveLevel(f.value)" class="btn btn-primary">Issaugoti</button>
+        <button (click)="offerForm()" class="btn btn-primary">Prideti pasiulyma</button>
+        <div class="form-group">
+          <ul *ngFor="let offer of loyaltyOffers$ | async ">
+            <li (click)="offerInformation(offer)">{{ offerLength }} pasiulymas</li>
+          </ul>
+        </div>
+      </div>
+      <div *ngIf="openOfferForm || editOfferForm" class="form-group">
+        <div class="form-group row">
+          <div class="form-group col-sm-6">
+            <label for="offer">Nuolatine nuolaida</label>
+            <select ngModel name="offer" id="offer" [(ngModel)]="totalInformation.category" class="form-control" #offer="ngModel" required>
+              <option value="">Pasirinkite</option>
+              <option *ngFor="let offer of discountTypes" [value]="offer.name">{{ offer.name }}</option>
+            </select>
+            <div *ngIf="offer.touched && !offer.valid" class="alert alert-danger">Iveskite Apsilankymu skaiciu</div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="discountSize">Nuolaidos dydis</label>
+            <input required ngModel [(ngModel)]="totalInformation.shortcut" name="discountSize" #discountSize="ngModel" type="text" placeholder="Pavyzdys -15% ar -5e"
+              class="form-control">
+            <div *ngIf="discountSize.touched && !discountSize.valid" class="aler alert-danger">Iveskite Nuolaidos dydi</div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="form-group col-sm-6">
+            <label for="gender">Auditorija</label>
+            <select ngModel name="gender" [(ngModel)]="totalInformation.gender" id="gender" class="form-control" #gender="ngModel" required>
+              <option value="">Pasirinkite</option>
+              <option value="Vyras">Vyras</option>
+              <option value="Moteris">Moteris</option>
+              <option value="Visi">Visi</option>
+            </select>
+            <div *ngIf="gender.touched && !gender.valid" class="aler alert-danger">Iveskite Nuolaidos dydi</div>
+          </div>
+          <div class="form-group col-sm-6">
+            <div class="form-group row">
+              <div class="form-group col-sm-6">
+                <label for="ageFrom">Nuo</label>
+                <input type="number" [(ngModel)]="totalInformation.age_from" min="1" ngModel name="ageFrom" class="form-control">
+              </div>
+              <div class="form-group col-sm-6">
+                <label for="ageTo">Iki</label>
+                <input type="number" min="1" max="99" [(ngModel)]="totalInformation.age_to" ngModel name="ageTo" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Aprasymas</label>
+          <textarea required ngModel [(ngModel)]="totalInformation.description" name="description" id="description" class="form-control"
+            cols="15" rows="5"></textarea>
+        </div>
+        <button *ngIf="openOfferForm" [disabled]="!f.valid"  (click)="saveOffer(f.value)" class="btn btn-primary">Issaugoti</button>
+        <button *ngIf="editOfferForm" [disabled]="!f.valid" (click)="updateOffer(f.value)" class="btn btn-primary">Pakeisti</button>
+      </div>
+    </div>
+  </div>
+</form>

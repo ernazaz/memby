@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1093875901544",
+    "firebase_url": "https://dosi-8daa7.firebaseio.com",
+    "project_id": "dosi-8daa7",
+    "storage_bucket": "dosi-8daa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093875901544:android:8fe3ca73fe763930",
+        "android_client_info": {
+          "package_name": "com.example.android.dosi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1093875901544-u0guqc8ncielce0qv624rnsn1sp6oh3f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.dosi",
+            "certificate_hash": "b03be32c70485dd631c01c3559d1d214a0ccd0ba"
+          }
+        },
+        {
+          "client_id": "1093875901544-60n7353an34icieoiud1qadoukbel6k0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBD6sG4QF2kkta-eaZK7cshCTMQq3JGPYk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1093875901544-60n7353an34icieoiud1qadoukbel6k0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

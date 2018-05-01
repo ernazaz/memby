@@ -1,0 +1,83 @@
+<form #f="ngForm">
+        <h1>Individualus pasiulymai</h1>
+        <h3> Konversija {{ listTotal.length }}</h3>
+        <div class="form-group">
+            <button (click)="add()" class="btn btn-primary">Prideti Pasiulyma</button>
+        </div>
+        <div *ngIf="offer" class="form-group">
+            <div class="form-group">
+            <div class="form-group row">
+                <div class="col-2">
+                    <label for="">Pavadinimas*</label>
+                </div>
+                <div class="col-8">
+                    <input ngModel name="title" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-2">
+                    <label for="">Kategorija*</label>
+                </div>
+                <div class="col-8">
+                    <select ngModel #category="ngModel" (change)="FilterByCategories(category.value)" name="category" id="category" class="form-control">
+                        <option value="">Pasirinkite</option>
+                        <option *ngFor="let select of selects" [value]="select.name">{{ select.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <div class="form-group">
+                        <label for="">Dydis*</label>
+                        <input #size="ngModel" ngModel name="size" [value]="Kkkk" style="width:30%" type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Lytis</label>
+                        <select ngModel (change)="FilterByGender(gender.value)" #gender="ngModel" name="gender" id='gender' class="form-control"
+                            id="gender">
+                            <option value="">{{genderValue}}</option>
+                            <option value="Male">Vyras</option>
+                            <option value="Female">Moteris</option>
+                        </select>
+                        <div class="form-group">
+                            <label for="">Amzius</label>
+                            <div class="form-group row">
+                                <div class="col-6">
+                                    <input ngModel name="ageFrom" [(ngModel)]="years" (change)="FilterByAgeFrom(ageFrom.value)" #ageFrom="ngModel" placeholder="Nuo.."
+                                        class="form-control" type="number" min="1" max="99">
+                                </div>
+                                <div class="col-6">
+                                    <input ngModel name="ageTo" (change)="AgesTo(ageTo.value)" #ageTo="ngModel" placeholder="Iki.." class="form-control" type="number"
+                                        max="99" min="11">
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <label for="">Iveskite Spindulio ilgi</label>
+                        <input ngModel name="radius" id="radius" #radius="ngModel" [(ngModel)]="dist" (change)="FilterByRadius(radius.value)" class="form-control"
+                            type="number" min=1>
+                    </div>
+                    <agm-map [latitude]=" latitude " [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
+                        <agm-marker [latitude]="latitude " [longitude]="longitude" [markerDraggable]="true" (dragEnd)="markerDragEnd($event)"></agm-marker>
+                        <agm-circle [latitude]=" latitude " [fillColor]="'red'" [radius]="radiusas" [longitude]=" longitude"></agm-circle>
+                    </agm-map>
+    
+                </div>
+            </div>
+        </div>
+        <button (click)="openFormat()" class="btn btn-secondary">Prideti Nuotrauka</button>
+        <div *ngIf="photo" class="form-group">
+            <input ngModel id="size" placeholder="Idekite fotke cia" name="image" #name="ngModel" type="file" (change)="fileChangeEvent($event)"
+            />
+            <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="2 / 3" [aspectRatio]="2 / 3" format="png" (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded() " (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div>
+        <button (click)="save(f.value)" class="btn btn-primary">Issaugoti</button>
+        </div>
+        
+    </form>
+    

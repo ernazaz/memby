@@ -1,0 +1,16 @@
+<form #f= "ngForm">
+  <div class="form-group">
+    <label for="">Iveskite El.Pasta</label>
+    <input #emails="ngModel" type="email" class="form-control" ngModel name="emails" >
+  </div>
+  <div class="form-group">
+    <label for="">Iveskite Slaptazodi</label>
+    <input #pass="ngModel" type="password" class="form-control" ngModel name="pass" >
+  </div>
+  <button (click)="log(f.value)" class="btn btn-primary">Prisijungti</button>
+  <ul>
+    <li>
+      <a class="nav-link" routerLink="/registration">Registracija</a>
+    </li>
+  </ul>
+</form>

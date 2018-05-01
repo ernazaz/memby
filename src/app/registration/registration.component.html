@@ -1,0 +1,45 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <label for="ceoName">Vartotojo Vardas Pavarde</label>
+    <input required type="text" class="form-control" id="ceoName" ngModel name="ceoName" #ceoName="ngModel" >
+    <div *ngIf="ceoName.touched && !ceoName.valid" class="alert alert-danger">Iveskite Varda Pavarde</div>
+  </div>
+  <div class="form-group">
+    <label for="companyCode">Imones kodas</label>
+    <input required type="text" class="form-control" id="companyCode" ngModel name="companyCode" #companyCode="ngModel" >
+    <div *ngIf="companyCode.touched && !companyCode.valid" class="alert alert-danger">Iveskite Imones Koda</div>
+  </div>
+  <div class="form-group">
+      <label for="pvmCode">PVM kodas</label>
+      <input required type="text" class="form-control" id="pvmCode" ngModel name="pvmCode" #pvmCode="ngModel" >
+      <div *ngIf="pvmCode.touched && !pvmCode.valid" class="alert alert-danger">Iveskite PVM Koda</div>
+    </div>
+  <div class="form-group">
+    <label for="address">Adresas</label>
+    <input required type="text" class="form-control" id="address" ngModel name="address" #address="ngModel" >
+    <div *ngIf="address.touched && !address.valid" class="alert alert-danger">Iveskite Imones adresa</div>
+  </div>
+  <div class="form-group">
+    <label for="phoneNumber">Telefono nr</label>
+    <input required type="text" class="form-control" id="phoneNumber" ngModel name="phoneNumber" #phoneNumber="ngModel" >
+    <div *ngIf="phoneNumber.touched && !phoneNumber.valid" class="alert alert-danger">Iveskite telefono numeri</div>
+  </div>
+  <div class="form-group">
+    <label for="email">El.Pastas</label>
+    <input required type="email" ngModel name="email" id="email" #email="ngModel" class="form-control" >
+    <div *ngIf="email.touched && !email.valid" class="alert alert-danger">Iveskite El.Pasta </div>
+  </div>
+  <div class="form-group">
+    <label for="passwords">Slaptazodis</label>
+    <input required type="password" class="form-control" ngModel #passwords="ngModel" name="passwords" #passwords="ngModel" id="passwords" >
+    <div *ngIf="passwords.touched && !passwords.valid" class="alert alert-danger">Iveskite</div>
+  </div>
+  <div class="form-groups">
+    <label for="repeatPassword">Pakartoki slaptazodi</label>
+    <input type="password" class="form-control" id="repeatPasswords" #repeat="ngModel" #repeatPasswords ngModel name="repeatPasswords" >
+    <div *ngIf="repeatPasswords.touched && !repeatPasswords.valid"  class="alert alert-danger">
+      <div *ngIf="repeatPasswords != passwords "> Nesutampa</div>
+    </div>
+  </div>
+  <button [disabled]="!f.valid"(click)="register(f.value)" class="btn btn-primary">Registruotis</button>
+</form>

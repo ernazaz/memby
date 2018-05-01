@@ -1,0 +1,27 @@
+<form #f="ngForm">
+    <div class="form-group row">
+        <div class="col-sm-4">
+            <ul *ngFor="let request of requests">
+                <li (click)="information(request)">{{ request.$key }}</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label>Vardas : {{ userInfo.name}} </label>
+                <br>
+                <label>Metai: {{ userInfo.age}} </label>
+                <br>
+                <label>Panaudota / Panaudotos nuolaidos: </label>
+                <ul *ngFor="let discount of discountKeys  ">
+                    <li>{{ discount.shortcut + ' ' + discount.description }}</li>
+                </ul>
+            </div>
+            <div class="form-group">
+                <label for="sum">Suma</label>
+                <input required type="text" ngModel name="sum" class="form-control">
+            </div>
+            <button [disabled]="!f.valid" (click)="done(f.value)" class="btn btn-primary">Patvirtinti</button>
+        </div>
+    </div>
+
+</form>

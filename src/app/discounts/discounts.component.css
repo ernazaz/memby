@@ -1,0 +1,44 @@
+image-cropper {
+    max-height: 500px;
+    max-width: 700px;
+  }
+  img {
+    max-height: 400px;
+    max-width: 300px;
+  }
+  .sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #413F3E;
+    display: block;
+}
+ul {
+  position: relative;
+  color: honeydew;
+}
+ul.a {
+  list-style-type: square;
+}
+#list {
+  position: fixed;
+  top: 125px;
+}
+.main {
+  position: relative;
+  top:20px;
+  margin-left: 180px;/* Same as the width of the sidenav */
+  height: 100%;
+  width: 75%;
+}
+#main_info {
+  position: relative;
+  top: 60px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  border-color: grey;
+  padding: 10px;
+}

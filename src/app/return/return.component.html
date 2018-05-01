@@ -1,0 +1,39 @@
+<form #f="ngForm" >
+    <div class="form-group row">
+      <div class="col-sm-2">
+       <button (click)="addForms()" class="btn btn-primary"> Grazinti Preke</button>
+        <h5>Grazintos prekes</h5>
+        <div class="form-group">
+            <ul *ngFor="let item of items$| async ">
+                <li (click)="info(item)" >{{ item.name }}</li>
+            </ul>
+        </div>
+      </div>
+      <div *ngIf="addForm || view" class="col-sm-8">
+
+          <h3>Grazinti prekes</h3>
+          <div class="form-group">
+            <label for="name">Prekes Pavadinimas</label>
+            <input ngModel name="name" [(ngModel)]="information.name" type="text" class="form-control" placeholder="Prekes pavadinimas">
+          </div>
+          <div class="form-group">
+            <label for="name">Data</label>
+            <input ngModel name="date" [(ngModel)]="information.date" type="date" class="form-control" >
+          </div>
+          <div class="form-group">
+            <label for="photo">Cekio nuotrauka</label>
+              <input ngModel id="image" name="image" class="form-control" type="file" format="png" resize-max-height="300"
+                  resize-max-width="250" resize-quality="0.7" (change)="detectFiles($event)" />
+                  <div  >
+                    <img [src]="url || information.photo ">
+                </div>
+          </div>
+          <div class="form-group">
+            <label for="cause">Priezastis</label>
+            <textarea ngModel name="cause" [(ngModel)]="information.cause" id="cause" cols="15" rows="5" class="form-control" ></textarea>
+          </div>
+          <button *ngIf="addForm" (click)="return(f.value)" class="btn btn-primary">Patvirtinti</button>
+      </div>
+      </div>
+
+</form>

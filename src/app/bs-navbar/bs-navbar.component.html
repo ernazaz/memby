@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" routerLink="/">Memby</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <ng-container  >
+          <li class="nav-item active">
+              <a class="nav-link" routerLink="/places">Vietos <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/discounts">Nuolaidu Pasiulymai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/individual">Individualus Pasiulymai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/loyalty">Lojalumas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/analysis">Analize</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/admin-bonus">Memby taskai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/workers">Darbuotojai</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/return">Grazinimas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/chat">Žinutės</a>
+            </li>
+      </ng-container>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/request">Pasiulymai</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" >Atsijungti</a>
+      </li>
+    </ul>
+  </div>
+</nav>

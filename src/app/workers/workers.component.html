@@ -1,0 +1,28 @@
+<form #f="ngForm">
+  <div class="form-group">
+    <h4>Darbuotojai</h4>
+    <div class="form-group">
+      <ul *ngFor="let worker of workers ">
+          <div class="form-inline">
+              <li (click)="actions(worker)" >{{ worker.worker }}</li>
+              <button (click)="delete(worker)"  class="btn btn-secondary">Pasalinti darbuotoja</button>
+            </div>
+        
+      </ul>
+      <div class="form-group">
+        <button (click)="add()" class="btn btn-primary">Prideti darbuotoja</button>
+      </div>
+    </div>
+    <div *ngIf="show" class="form-group">
+      <div class="form-group">
+        <label for=""></label>
+        <input type="email" placeholder="email" ngModel name="email">
+      </div>
+      <div class="form-group">
+        <label for=""></label>
+        <input type="password" placeholder="slaptazodis" ngModel name="password">
+      </div>
+      <button (click)="register(f.value)" class="btn btn-primary">Issaugoti</button>
+    </div>
+  </div>
+</form>

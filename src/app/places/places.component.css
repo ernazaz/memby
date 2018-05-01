@@ -1,0 +1,82 @@
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #413F3E;
+    display: block;
+}
+ul {
+    position: relative;
+    color: honeydew;
+}
+ul.a {
+    list-style-type: square;
+}
+#list {
+    position: fixed;
+    top: 125px;
+}
+#add{
+    position: fixed;
+    width: 240px;
+    top:70px;
+    left: 20px;
+    right: 20px;
+    border-radius: 20px;
+    border-color: #5fe2ae;
+    background-color: #413F3E;
+}
+.main {
+    position: relative;
+    top:20px;
+    margin-left: 200px;/* Same as the width of the sidenav */
+    height: 100%;
+    width: 75%;
+}
+agm-map {
+    margin-left: 50px;
+    width: 300px;
+    height: 200px;
+}
+#main_info {
+    
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: grey;
+    height: 350px;
+    width: 850px;
+    padding: 10px 0 0 0;
+    
+}
+#key_words{
+
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    border-color: grey;
+    height: 100px;
+    width: 850px;
+    padding: 10px;
+}
+#details {
+    height: 200px;
+    width: 850px;
+    padding: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 20px;
+    border-color: grey;
+   
+    
+}
+.target {
+    background: white;
+    border-radius: 35px;
+    color: black;
+    width: 40px;
+    
+}

@@ -1,0 +1,13 @@
+
+image-cropper {
+    max-height: 500px;
+    max-width: 700px;
+  }
+  agm-map {
+    height: 250px;
+  }
+.btn-default{
+  width: 15%;
+  height: 15%;
+  border-radius: 20px;
+}

@@ -1,0 +1,27 @@
+
+<form #f="ngForm" >
+ 
+  <div  class="form-group">
+    <div class="form-group">
+      <label for="">Pavadinimas</label>
+      <input ngModel name="title" class="form-control" #title="ngModel" type="text">
+    </div>
+    <div class="form-group">
+      <label for="points">Reikiamu tasku skaicius</label>
+      <input ngModel name="points" class="form-control" #points="ngModel" type="number" min="0" >
+    </div>
+    <div class="form-group">
+      <label for="description">Aprasymas</label>
+      <textarea ngModel  name="description" #description="ngModel" class="form-control" id="description" cols="15" rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <input ngModel id="size" placeholder="Idekite fotke cia" name="image" #name="ngModel" type="file" (change)="fileChangeEvent($event)"
+      />
+      <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="2 / 3" [aspectRatio]="2 / 3" format="png" (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded() " (loadImageFailed)="loadImageFailed()"></image-cropper>
+  </div>
+
+  </div>
+
+  <button (click)="save(f.value)" class="btn btn-primary">Issaugoti</button>
+</form>
