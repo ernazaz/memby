@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { OrderByOptions } from 'angularfire2/interfaces';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 @Injectable()
 export class DiscountsService {

@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
-import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs/observable';
+import { Observable, of } from 'rxjs';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { environment } from '../../environments/environment';
+import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class WorkersService {
 
   private config = environment.firebase;
-  
   authState;
   uid;
   worker$: Observable<firebase.User>;

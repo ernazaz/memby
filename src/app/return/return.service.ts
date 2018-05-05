@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Upload } from '../places/upload';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from '../auth.service';
 import * as firebase from 'firebase'
 @Injectable()
@@ -8,7 +8,7 @@ export class ReturnService {
 
   constructor(private db: AngularFireDatabase, private auth: AuthService) { }
   private basePath:string = '/receipts';
-  uploads: FirebaseObjectObservable<Upload[]>;
+  uploads: AngularFireObject<Upload[]>;
 
   getItems(id){
     return this.db.list('/companies_item_return/'+id);

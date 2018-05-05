@@ -1,32 +1,36 @@
 <form #f="ngForm">
   <div class="form-group row">
     <div class="col-sm-2">
+        <div class="form-group">
+            <button (click)="addPrizesForm()" class="btn btn-primary">Prizai</button>
+          </div>
       <div class="form-group">
         <button (click)="addLevel()" class="btn btn-primary">Prideti Lygi</button>
       </div>
       <div class="form-group">
-        <ul *ngFor="let level of loyaltyLevels$ | async ">
-          <li (click)="levelInfo(level)">{{ level.level }} Lygis</li>
+        <ul *ngFor="let level of leveliai  ">
+          <li (click)="levelInfo(level)">{{ level.$key }} Lygis</li>
         </ul>
       </div>
     </div>
-    <div *ngIf="openForm || editForm " class="col-sm-6">
+    <div class="form-group" class="col-sm-8">
+    <div *ngIf="openForm || editForm " >
       <div class="form-group">
         <div class="form-group">
-          <label>Lygis {{ levelInformation.level || level }}</label>
+          <label>Lygis {{ levelInformation.$key || level }}</label>
         </div>
         <div class="form-group row">
-          <div class="col-sm-6">
-            <label for="visits">Tasku skaicius</label>
+          <div class="col-sm-4">
+            <label for="points">Tasku skaicius</label>
           </div>
-          <div class="col-sm-6 row ">
+          <div class="col-sm-4 row ">
             <div class="form-group col-sm-6">
-                <input required ngModel [(ngModel)]="levelInformation.visits || loyaltLevel" name="visits" type="number" min="1" class="form-control" #visits="ngModel"
-                maxlength="4" id="visits">
-              <div *ngIf="visits.touched && !visits.valid" class="alert alert-danger">Iveskite Apsilankymu skaiciu</div>
+                <input required ngModel [(ngModel)]="levelInformation.points || loyaltLevel" name="points" type="number" min="1" class="form-control" #points="ngModel"
+                maxlength="4" id="points">
+              <div *ngIf="points.touched && !points.valid" class="alert alert-danger">Iveskite tasku skaiciu</div>
             </div>
             <div class="form-group col-sm-6">
-                <button (click)="updateVisits(f.value)" *ngIf="editForm" class="btn primary">Pakeisti skaiciu</button>
+                <button (click)="updatePoints(f.value)" *ngIf="editForm" class="btn primary">Pakeisti skaiciu</button>
             </div>
           </div>
         </div>
@@ -88,5 +92,34 @@
         <button *ngIf="editOfferForm" [disabled]="!f.valid" (click)="updateOffer(f.value)" class="btn btn-primary">Pakeisti</button>
       </div>
     </div>
+    <div *ngIf="prizesForm" class="form-group">
+      <div class="form-group">
+        <button (click)="showPrizesForms()" class="btn btn-primary">Prideti Priza</button>
+      </div>
+      <div *ngIf="showPrizesForm || editPrize" class="form-group">
+      <h2>Prizai</h2>
+      <div class="form-group">
+        <label for="shortDescription">Pavadinimas</label>
+        <input type="text" ngModel name="shortDescription" [(ngModel)]="infoPrizes.short_description" class="form-control" required #shortDescription="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="neededPoints">Tasku kiekis</label>
+        <input required type="number" min="1" class="form-control" [(ngModel)]="infoPrizes.points" ngModel name="neededPoints" #neededPoints="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="description">Aprasymas</label>
+        <textarea ngModel name="description" class="form-control" [(ngModel)]="infoPrizes.description" required cols="10" rows="5" #description="ngModel"></textarea>
+      </div>
+    
+      <button *ngIf="showPrizesForm" class="btn primary" [disabled]="!f.valid" (click)="savePrizes(f.value)">Issaugoti</button>
+      <button *ngIf="editPrize" class="btn primary" [disabled]="!f.valid" (click)="updatePrize(f.value)">Pakeisti</button>
+    </div>
+    <div class="form-group">
+        <ul *ngFor="let prize of prizes$ | async  ">
+          <li (click)="prizeInfo(prize)">{{ prize.short_description }} </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   </div>
 </form>

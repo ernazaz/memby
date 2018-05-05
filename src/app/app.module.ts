@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule} from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { AngularFireModule } from 'angularfire2'; 
-import { AngularFireDatabaseModule } from 'angularfire2/database'; 
+import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database'; 
 import { AngularFireAuthModule } from 'angularfire2/auth'; 
 import { RouterModule } from '@angular/router'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'; 
@@ -10,9 +10,7 @@ import { NgForm, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'; 
 import { AgmCoreModule } from '@agm/core';
 import { enableProdMode } from '@angular/core';
-import { ImageCropperModule,   } from 'ngx-image-cropper';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -43,6 +41,7 @@ import { RequestService } from './request/request.service';
 import { ReturnComponent } from './return/return.component';
 import { ReturnService } from './return/return.service';
 import { ChatComponent } from './chat/chat.component';
+import { PrizesComponent } from './prizes/prizes.component';
 
 
 
@@ -64,12 +63,11 @@ import { ChatComponent } from './chat/chat.component';
     RequestComponent,
     ReturnComponent,
     ChatComponent,
+    PrizesComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    ImageCropperModule,
-    FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -105,6 +103,11 @@ import { ChatComponent } from './chat/chat.component';
       {
         path: 'loyalty/new',
         component: LoyaltyComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'loyalty/prizes',
+        component: PrizesComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -148,6 +151,7 @@ import { ChatComponent } from './chat/chat.component';
         component: ChatComponent,
         canActivate: [AuthGuard]
       },
+
     ]),
   ],
   providers: [

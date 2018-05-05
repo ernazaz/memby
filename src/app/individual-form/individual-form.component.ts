@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Type, NgZone, Input, ElementRef } from '@angular/core';
 import { CropperSettings, Bounds, ImageCropperComponent, } from 'ng2-img-cropper';
-import { ImageCropperModule, } from 'ngx-image-cropper';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Subscriber } from 'rxjs/Subscriber';
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule, MapsAPILoader } from '@agm/core';
@@ -223,7 +222,7 @@ export class IndividualFormComponent implements OnInit {
           this.geoCoder = new google.maps.Geocoder;
       });
       this.db.list('/users_info/')
-          .subscribe(items => {
+      .valueChanges().subscribe(items => {
               this.useris = items;
           })
       this.zoom = 12;

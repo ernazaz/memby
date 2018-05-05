@@ -17,7 +17,8 @@ export class WorkersComponent implements OnInit {
   private workerService: WorkersService) {
     this.workers = [];
     this.auth.user$.subscribe(user => {
-      this.workerService.getWorkers(user.uid).subscribe(user => {
+      this.workerService.getWorkers(user.uid).valueChanges().
+      subscribe(user => {
         user.map( each => {
           this.workers.push(each);
         })

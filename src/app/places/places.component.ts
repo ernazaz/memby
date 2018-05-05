@@ -50,12 +50,12 @@ export class PlacesComponent implements OnInit {
    this.auth.user$.subscribe(user => {
      if (user){
       this.uid = user.uid;
-      this.placesService.getPlace().subscribe(user => {
+      this.placesService.getPlace().valueChanges().subscribe(user => {
        this.allPlaces=[];
        user.map( place => {
-         if(place.companyId == this.uid){
-           this.allPlaces.push(place);
-         }
+         //if(place.companyId == this.uid){
+         //  this.allPlaces.push(place);
+        // }
        })
       })
      }

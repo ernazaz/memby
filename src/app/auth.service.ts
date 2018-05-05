@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { Observable } from 'rxjs/observable';
+import { Observable, of } from 'rxjs';
 import 'rxjs/add/observable/of';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { FirebaseObjectObservable } from 'angularfire2/database-deprecated'
 import { Users } from './models/users';
 
 @Injectable()
@@ -66,18 +67,18 @@ export class AuthService {
     this.router.navigate(['/login'])
   }
 
-  getUser(uid: string):FirebaseObjectObservable<Users>{
+  getUser(uid: string):AngularFireObject<Users>{
     return this.db.object('/main_companies/'+ uid);
   }
 
-  get appUsers$(): Observable<Users> {
+ /* get appUsers$(): Observable<Users> {
     return this.user$
     .switchMap(user => {
       if (user) return this.getUser(user.uid);
 
         return Observable.of(null);
     });
-  }
+  } */
 
 
 }

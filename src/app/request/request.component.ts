@@ -13,7 +13,7 @@ export class RequestComponent implements OnInit {
   userInfo = {};
   constructor(private requestService: RequestService) {
     this.requests = [];
-    this.requestService.getRequest().subscribe( pin => {
+    this.requestService.getRequest().valueChanges().subscribe( pin => {
       pin.map( req => {
         let deadLine = new Date();
         this.requests.push(req);
@@ -29,15 +29,15 @@ export class RequestComponent implements OnInit {
     this.discountKeys = [];
     this.userKey = request.userKey;
     let key = request.$key;
-    this.requestService.discountKey(key).subscribe(keys => {
+    this.requestService.discountKey(key).valueChanges().subscribe(keys => {
       keys.map(keyz => {
-        this.requestService.discountInfo(keyz.$key)
-          .subscribe(info => {
+        this.requestService.discountInfo(keyz)
+        .valueChanges().subscribe(info => {
             this.discountKeys.push(info);
           })
 
       })
-      this.requestService.userInfo(this.userKey).subscribe(user => {
+      this.requestService.userInfo(this.userKey).valueChanges().subscribe(user => {
         this.userInfo = user;
       })
     });

@@ -22,24 +22,34 @@ export class DiscountsComponent implements OnInit {
   constructor(private discountService: DiscountsService,
     private auth: AuthService) {
     this.today = new Date();
+    
+    this.discountService.getAll().snapshotChanges().map(actions => {
+      return actions.map(action => ({ key: action.key, ...action.payload.val() }));
+    }).subscribe(items => {
+      return items.map(item => item.key);
+    });
+
+
+
+
     //------- Check all discount and delete expired 
-    this.discountService.getAll()
-      .subscribe(pin => {
+   /* this.discountService.getAll().valueChanges().subscribe(pin => {
         pin.map(all => {
           let deadLine: any = new Date(all.date);
           if ((deadLine - this.today) <= 0) {
             this.discountService.removeExpiredDate(all.$key, all,all.companyKey);
           }
         })
-      })
+      })*/
     //------ Get All pins
     this.auth.user$.subscribe(user => {
       if (user) {
         this.uid = user.uid;
-        this.discountService.getPlaces().subscribe(user => {
+        this.discountService.getPlaces().valueChanges().subscribe(user => {
           this.places = [];
           user.map(place => {
-            if (place.companyId == this.uid) {
+            
+            if (place == this.uid) {
               this.places.push(place);
             }
           })
@@ -94,9 +104,9 @@ export class DiscountsComponent implements OnInit {
     this.companyName = pin.name;
     //----- Here get all discount by Pins
     this.discountService.getKeys(this.discountKey)
-      .subscribe(Id => {
+      .valueChanges().subscribe(Id => {
         Id.map(keys => {
-          this.discountService.getDiscount(keys.$key).subscribe(
+          this.discountService.getDiscount(keys).valueChanges().subscribe(
             discount => {
               this.total.push(discount);
             })

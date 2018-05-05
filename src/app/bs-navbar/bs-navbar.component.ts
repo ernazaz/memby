@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { Users } from '../models/users';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'bs-navbar',
@@ -15,11 +16,11 @@ export class BsNavbarComponent implements OnInit {
 
   constructor( private auth: AuthService) {
     this.user$ = auth.authState;
-    
+    /*
     auth.appUsers$.subscribe( appUser => {
       this.appUser = appUser;
       this.isCompany = appUser.isCompany;
-    });
+    }); */
 
     
    }

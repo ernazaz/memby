@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase'
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { AuthService } from '../auth.service';
 import { Upload } from './upload';
 
@@ -9,7 +9,7 @@ export class PlacesService {
 
   constructor(private db: AngularFireDatabase, private auth: AuthService) { }
   private basePath:string = '/logos';
-  uploads: FirebaseObjectObservable<Upload[]>;
+  uploads: AngularFireObject<Upload[]>;
 
   save(form,upload: Upload,uid){
     let storageRef = firebase.storage().ref();
