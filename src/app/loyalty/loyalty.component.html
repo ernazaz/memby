@@ -96,7 +96,7 @@
       <div class="form-group">
         <button (click)="showPrizesForms()" class="btn btn-primary">Prideti Priza</button>
       </div>
-      <div *ngIf="showPrizesForm || editPrize" class="form-group">
+      <div *ngIf=" showPrizesForm || editPrize " class="form-group">
       <h2>Prizai</h2>
       <div class="form-group">
         <label for="shortDescription">Pavadinimas</label>
@@ -115,7 +115,7 @@
       <button *ngIf="editPrize" class="btn primary" [disabled]="!f.valid" (click)="updatePrize(f.value)">Pakeisti</button>
     </div>
     <div class="form-group">
-        <ul *ngFor="let prize of prizes$ | async  ">
+        <ul *ngFor="let prize of prizes ">
           <li (click)="prizeInfo(prize)">{{ prize.short_description }} </li>
         </ul>
       </div>

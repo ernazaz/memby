@@ -42,6 +42,7 @@ import { ReturnComponent } from './return/return.component';
 import { ReturnService } from './return/return.service';
 import { ChatComponent } from './chat/chat.component';
 import { PrizesComponent } from './prizes/prizes.component';
+import { ImageCropperModule,   } from 'ngx-image-cropper';
 
 
 
@@ -72,6 +73,7 @@ import { PrizesComponent } from './prizes/prizes.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     FormsModule,
+    ImageCropperModule,
    
     NgbModule.forRoot(),
     AgmCoreModule.forRoot({

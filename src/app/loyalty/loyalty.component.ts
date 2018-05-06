@@ -4,6 +4,8 @@ import 'rxjs/add/operator/take';
 import { Location } from '@angular/common';
 import { LoyaltyService } from './loyalty.service';
 import { AuthService } from '../auth.service';
+import { Observable } from '@firebase/util';
+import { AngularFireList } from 'angularfire2/database';
 
 @Component({
   selector: 'app-loyalty',
@@ -18,7 +20,7 @@ export class LoyaltyComponent implements OnInit {
   openOfferForm: boolean = false;
   editOfferForm: boolean = false;
   loyaltyLevels$;
-  prizes$;
+  prizes = {};
   loyaltyOffers$;
   level;
   key;
@@ -40,7 +42,12 @@ export class LoyaltyComponent implements OnInit {
      {
     this.auth.user$.subscribe(user => {
       if (user) {
-        this.prizes$ = this.loyaltyService.getPrizes(user.uid);
+     
+        this.loyaltyService.getPrizes(user.uid).valueChanges().subscribe( prize => {
+          console.log(prize," ---- ziuras---",user.uid);
+          this.prizes = prize;
+        })
+        console.log(this.loyaltyService.getPrizes(user.uid),"-----");
         this.loyaltyService.getDiscountLevels(user.uid).valueChanges().subscribe( offer => {
           this.level = offer.length +1;
         })
@@ -103,7 +110,7 @@ export class LoyaltyComponent implements OnInit {
     this.levelInformation = level;
     this.loyaltLevel= level.$key;
     console.log(this.loyaltLevel,"------- loyaltLeve");
-    this.auth.user$.subscribe(user => {
+    this.auth.user$.map(user => {
       if (user) {
         this.loyaltyOffers$ = this.loyaltyService.getLoyaltyOffer(user.uid,this.loyaltLevel);
         this.loyaltyService.getLoyaltyOffer(user.uid,this.loyaltLevel).valueChanges().subscribe(
@@ -142,8 +149,8 @@ export class LoyaltyComponent implements OnInit {
   }
 
   //---------------------Prizes
-  showPrizesForm:boolean = false;
-  editPrize:boolean = false;
+  showPrizesForm:boolean;
+  editPrize:boolean;
   showPrizesForms(){
   this.showPrizesForm = !this.showPrizesForm;
   this.editPrize = false;

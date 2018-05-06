@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewChild, Type, NgZone, Input, ElementRef } from '@angular/core';
-import { CropperSettings, Bounds, ImageCropperComponent, } from 'ng2-img-cropper';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Subscriber } from 'rxjs/Subscriber';
 import { BrowserModule } from "@angular/platform-browser";
@@ -43,8 +42,7 @@ export class IndividualFormComponent implements OnInit {
       private auth: AuthService) {
         this.listTotal = [];
 
-        this.users$ = this.individualService.getUsers();
-        this.users$.subscribe( us => {
+        this.individualService.getUsers().valueChanges().subscribe( us => {
             this.length = us.length;
             
             us.map( all => {
